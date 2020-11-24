@@ -1,0 +1,86 @@
+ 2  p5.play-boilerplate-master/README.md 
+@@ -0,0 +1,2 @@
+# p5.play-boilerplate
+Boiler plate for p5.play
+ 16  p5.play-boilerplate-master/index.html 
+@@ -0,0 +1,16 @@
+<!DOCTYPE html><html><head>
+    <script src="p5.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="matter.js"></script>
+<script src="./p5.play.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+
+  </head>
+  <body>
+      <script src="sketch.js"></script>
+
+
+</body></html> 
+ 10,180  p5.play-boilerplate-master/matter.js 
+Large diffs are not rendered by default.
+
+ 3  p5.play-boilerplate-master/p5.dom.min.js 
+Large diffs are not rendered by default.
+
+ 83,507  p5.play-boilerplate-master/p5.js 
+Large diffs are not rendered by default.
+
+ 6,742  p5.play-boilerplate-master/p5.play.js 
+Large diffs are not rendered by default.
+
+ 28  p5.play-boilerplate-master/p5.sound.min.js 
+Large diffs are not rendered by default.
+
+ 38  p5.play-boilerplate-master/sketch.js 
+@@ -0,0 +1,38 @@
+var car,wall;
+var speed,weight;
+
+function setup() {
+  createCanvas(1600,400);
+  speed = random(55,90);
+  weight = random(400,1500)
+  car=createSprite(50, 200, 50, 50);
+  wall = createSprite(1500,200,60,height/2);
+  car.velocityX=speed;
+
+
+}
+
+function draw() {
+  background(255,255,255); 
+
+  if (wall.x-car.x < (car.width+wall.width)/2)
+  {
+    car.velocityX = 0
+    var deformation = 0.5 * weight * speed * speed/22500
+    if(deformation>180)
+    {
+      car.shapeColor=color(255,0,0);
+    }
+
+    if(deformation<180 && deformation>100)
+    {
+      car.shapeColor=color(230,230,0);
+    }
+
+    if(deformation<100)
+    {
+      car.shapeColor=color(0,255,0);
+    }
+  }
+  drawSprites();
+} 
+ 7  p5.play-boilerplate-master/style.css 
+@@ -0,0 +1,7 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
